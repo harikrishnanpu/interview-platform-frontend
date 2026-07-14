@@ -1,19 +1,9 @@
 import { Link, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-type AuthState = {
-  auth: {
-    user: {
-      id: string;
-      name: string;
-      email: string;
-      role: "user" | "admin" | "interviewer";
-    } | null;
-  };
-};
+import type { AppState } from "shared-auth";
 
 export default function UserDashboard() {
-  const user = useSelector((state: AuthState) => state.auth.user);
+  const user = useSelector((state: AppState) => state.auth.user);
 
   if (!user) return <Navigate to="/login" replace />;
   if (user.role !== "user") return <Navigate to="/login" replace />;

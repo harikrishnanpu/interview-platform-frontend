@@ -2,16 +2,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { AuthState, AuthUser } from "shared-auth";
 import AuthRoutes from "./routes";
 import "./index.css";
 
-// tiny store so this remote can run alone while developing
 const authSlice = createSlice({
   name: "auth",
-  initialState: { user: null as null | { id: string; name: string; email: string } },
+  initialState: { user: null } as AuthState,
   reducers: {
-    setUser(state, action) {
+    setUser(state, action: PayloadAction<AuthUser>) {
       state.user = action.payload;
     },
   },
@@ -25,7 +25,9 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <AuthRoutes />
+        <div className="min-h-screen bg-surface text-foreground">
+          <AuthRoutes />
+        </div>
       </BrowserRouter>
     </Provider>
   </StrictMode>

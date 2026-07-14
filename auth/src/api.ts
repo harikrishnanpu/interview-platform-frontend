@@ -1,6 +1,10 @@
-const API = "http://localhost:4000/auth";
+import type { AuthUser, Role } from "shared-auth";
+import { dashboardPath } from "shared-auth";
 
-export type Role = "user" | "admin" | "interviewer";
+export type { Role };
+export { dashboardPath };
+
+const API = "http://localhost:4000/auth";
 
 type ApiOk<T> = {
   success: true;
@@ -34,25 +38,13 @@ export async function signup(
   password: string,
   role: Role
 ) {
-  return request<{ user: { id: string; name: string; email: string; role: Role } }>(
-    "/signup",
-    { name, email, password, role }
-  );
+  return request<{ user: AuthUser }>("/signup", { name, email, password, role });
 }
 
 export async function login(email: string, password: string) {
-  return request<{ user: { id: string; name: string; email: string; role: Role } }>(
-    "/login",
-    { email, password }
-  );
+  return request<{ user: AuthUser }>("/login", { email, password });
 }
 
 export async function forgotPassword(email: string) {
   return request<{ resetToken: string | null }>("/forgot-password", { email });
-}
-
-export function dashboardPath(role: Role) {
-  if (role === "admin") return "/admin/dashboard";
-  if (role === "interviewer") return "/interviewer/dashboard";
-  return "/dashboard";
 }

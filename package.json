@@ -1,0 +1,13 @@
+{
+  "name": "interview-platform-frontend",
+  "private": true,
+  "scripts": {
+    "dev:host": "npm run dev --workspace=host",
+    "dev:auth": "npm run dev --workspace=auth",
+    "dev:dashboard": "npm run dev --workspace=dashboard",
+    "build:auth": "npm run build --workspace=auth",
+    "build:dashboard": "npm run build --workspace=dashboard",
+    "build:host": "npm run build --workspace=host"
+  },
+  "workspaces": ["packages/*", "host", "auth", "dashboard"]
+}

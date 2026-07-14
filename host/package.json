@@ -14,7 +14,8 @@
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.5.0",
-    "shared-theme": "*"
+    "shared-auth": "^1.0.0",
+    "shared-theme": "^1.0.0"
   },
   "devDependencies": {
     "@module-federation/vite": "^1.2.7",

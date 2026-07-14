@@ -1,18 +1,13 @@
 import { configureStore, createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import {
+  dashboardPath,
+  type AuthState,
+  type AuthUser,
+} from "shared-auth";
 
-export type Role = "user" | "admin" | "interviewer";
 export type Theme = "light" | "dark";
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: Role;
-};
-
-type AuthState = {
-  user: User | null;
-};
+export { dashboardPath };
+export type { AuthUser, AuthState, Role } from "shared-auth";
 
 type ThemeState = {
   mode: Theme;
@@ -30,10 +25,10 @@ applyTheme(savedTheme);
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: savedUser ? (JSON.parse(savedUser) as User) : null,
+    user: savedUser ? (JSON.parse(savedUser) as AuthUser) : null,
   } as AuthState,
   reducers: {
-    setUser(state, action: PayloadAction<User>) {
+    setUser(state, action: PayloadAction<AuthUser>) {
       state.user = action.payload;
       localStorage.setItem("auth_user", JSON.stringify(action.payload));
     },
@@ -74,9 +69,3 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-
-export function dashboardPath(role: Role) {
-  if (role === "admin") return "/admin/dashboard";
-  if (role === "interviewer") return "/interviewer/dashboard";
-  return "/dashboard";
-}
