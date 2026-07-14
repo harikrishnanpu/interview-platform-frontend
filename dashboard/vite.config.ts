@@ -10,7 +10,6 @@ export default defineConfig({
     federation({
       name: "dashboardApp",
       filename: "remoteEntry.js",
-      dts: false,
       exposes: {
         "./routes": "./src/routes.tsx",
       },
@@ -20,6 +19,9 @@ export default defineConfig({
         "react-router-dom": { singleton: true },
         "@reduxjs/toolkit": { singleton: true },
         "react-redux": { singleton: true },
+        axios: { singleton: true },
+        "shared-auth": { singleton: true },
+        "shared-config": { singleton: true },
       },
     }),
   ],

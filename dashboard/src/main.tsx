@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import type { AuthState, AuthUser } from "shared-auth";
-import DashboardRoutes from "./routes";
+import dashboardRoutes from "./routes";
 import "./index.css";
 
 const demoUser: AuthUser = {
@@ -24,14 +24,14 @@ const store = configureStore({
   reducer: { auth: authSlice.reducer },
 });
 
+const router = createBrowserRouter(dashboardRoutes);
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <div className="min-h-screen bg-surface text-foreground">
-          <DashboardRoutes />
-        </div>
-      </BrowserRouter>
+      <div className="min-h-screen bg-surface text-foreground">
+        <RouterProvider router={router} />
+      </div>
     </Provider>
   </StrictMode>
 );
