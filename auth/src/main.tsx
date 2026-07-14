@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { AuthState, AuthUser } from "shared-auth";
-import AuthRoutes from "./routes";
+import authRoutes from "./routes";
 import "./index.css";
 
 const authSlice = createSlice({
@@ -21,14 +21,14 @@ const store = configureStore({
   reducer: { auth: authSlice.reducer },
 });
 
+const router = createBrowserRouter(authRoutes);
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <div className="min-h-screen bg-surface text-foreground">
-          <AuthRoutes />
-        </div>
-      </BrowserRouter>
+      <div className="min-h-screen bg-surface text-foreground">
+        <RouterProvider router={router} />
+      </div>
     </Provider>
   </StrictMode>
 );
