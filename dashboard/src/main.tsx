@@ -1,0 +1,34 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import DashboardRoutes from "./routes";
+import "./index.css";
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    user: {
+      id: "1",
+      name: "Demo",
+      email: "demo@test.com",
+      role: "user" as const,
+    },
+  },
+  reducers: {},
+});
+
+const store = configureStore({
+  reducer: { auth: authSlice.reducer },
+});
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <DashboardRoutes />
+      </BrowserRouter>
+    </Provider>
+  </StrictMode>
+);
