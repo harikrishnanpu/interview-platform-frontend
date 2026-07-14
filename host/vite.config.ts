@@ -9,16 +9,15 @@ export default defineConfig({
     tailwindcss(),
     federation({
       name: "host",
-      dts: false,
       remotes: {
         authApp: {
-          type: "module",
           name: "authApp",
+          type: "module",
           entry: "http://localhost:5001/remoteEntry.js",
         },
         dashboardApp: {
-          type: "module",
           name: "dashboardApp",
+          type: "module",
           entry: "http://localhost:5002/remoteEntry.js",
         },
       },
@@ -28,11 +27,14 @@ export default defineConfig({
         "react-router-dom": { singleton: true },
         "@reduxjs/toolkit": { singleton: true },
         "react-redux": { singleton: true },
+        axios: { singleton: true },
+        "shared-auth": { singleton: true },
+        "shared-config": { singleton: true },
       },
     }),
   ],
   server: {
-    port: 5000,
+    port: 5003,
     strictPort: true,
   },
   build: {

@@ -13,7 +13,6 @@ type ThemeState = {
   mode: Theme;
 };
 
-const savedUser = localStorage.getItem("auth_user");
 const savedTheme = (localStorage.getItem("theme") as Theme | null) || "light";
 
 function applyTheme(mode: Theme) {
@@ -24,17 +23,13 @@ applyTheme(savedTheme);
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: savedUser ? (JSON.parse(savedUser) as AuthUser) : null,
-  } as AuthState,
+  initialState: { user: null } as AuthState,
   reducers: {
     setUser(state, action: PayloadAction<AuthUser>) {
       state.user = action.payload;
-      localStorage.setItem("auth_user", JSON.stringify(action.payload));
     },
-    logout(state) {
+    clearUser(state) {
       state.user = null;
-      localStorage.removeItem("auth_user");
     },
   },
 });
@@ -43,11 +38,6 @@ const themeSlice = createSlice({
   name: "theme",
   initialState: { mode: savedTheme } as ThemeState,
   reducers: {
-    setTheme(state, action: PayloadAction<Theme>) {
-      state.mode = action.payload;
-      localStorage.setItem("theme", action.payload);
-      applyTheme(action.payload);
-    },
     toggleTheme(state) {
       const next = state.mode === "light" ? "dark" : "light";
       state.mode = next;
@@ -57,8 +47,8 @@ const themeSlice = createSlice({
   },
 });
 
-export const { setUser, logout } = authSlice.actions;
-export const { setTheme, toggleTheme } = themeSlice.actions;
+export const { setUser, clearUser } = authSlice.actions;
+export const { toggleTheme } = themeSlice.actions;
 
 export const store = configureStore({
   reducer: {

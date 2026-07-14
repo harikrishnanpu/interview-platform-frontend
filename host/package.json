@@ -4,18 +4,20 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5000 --strictPort",
+    "dev": "vite --port 5003 --strictPort",
     "build": "vite build",
-    "preview": "vite preview --port 5000 --strictPort"
+    "preview": "vite preview --port 5003"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
+    "axios": "^1.9.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.5.0",
-    "shared-auth": "^1.0.0",
-    "shared-theme": "^1.0.0"
+    "shared-auth": "*",
+    "shared-config": "*",
+    "shared-theme": "*"
   },
   "devDependencies": {
     "@module-federation/vite": "^1.2.7",
