@@ -13,6 +13,9 @@ export default defineConfig({
       exposes: {
         "./routes": "./src/routes.tsx",
       },
+      remotes: {
+        "newComp": "http://localhost:5005/remoteEntry.js"
+      },
       shared: {
         react: { singleton: true },
         "react-dom": { singleton: true },

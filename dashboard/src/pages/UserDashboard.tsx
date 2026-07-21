@@ -2,6 +2,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { AppState } from "shared-auth";
 import { APP_ROUTES } from "shared-config";
+import NewComp from 'newComp/NewComp'
 
 export default function UserDashboard() {
   const user = useSelector((state: AppState) => state.auth.user);
@@ -22,6 +23,7 @@ export default function UserDashboard() {
         >
           Back home
         </Link>
+            <NewComp />
       </div>
     </div>
   );
