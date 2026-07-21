@@ -4,6 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/auth.ts"
+    ".": "./src/index.ts",
+    "./types": "./src/types.ts",
+    "./api": "./src/api.ts",
+    "./utils": "./src/utils.ts"
+  },
+  "dependencies": {
+    "shared-config": "*"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "shared-config",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./routes": "./src/routes.ts",
+    "./messages": "./src/messages.ts",
+    "./api": "./src/api.ts"
+  },
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
+}

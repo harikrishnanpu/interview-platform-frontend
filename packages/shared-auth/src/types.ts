@@ -1,4 +1,3 @@
-
 export type Role = "user" | "admin" | "interviewer";
 
 export type AuthUser = {
@@ -15,9 +14,3 @@ export type AuthState = {
 export type AppState = {
   auth: AuthState;
 };
-
-export function dashboardPath(role: Role) {
-  if (role === "admin") return "/admin/dashboard";
-  if (role === "interviewer") return "/interviewer/dashboard";
-  return "/dashboard";
-}
