@@ -1,13 +1,7 @@
 import { configureStore, createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import {
-  dashboardPath,
-  type AuthState,
-  type AuthUser,
-} from "shared-auth";
+import type { AuthState, AuthUser } from "shared-auth";
 
 export type Theme = "light" | "dark";
-export { dashboardPath };
-export type { AuthUser, AuthState, Role } from "shared-auth";
 
 type ThemeState = {
   mode: Theme;
