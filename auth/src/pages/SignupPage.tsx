@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { dashboardPath, signup, type Role } from "shared-auth";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { dashboardPath, signup, type AppState, type Role } from "shared-auth";
 import { APP_ROUTES, MESSAGES } from "shared-config";
 
 export default function SignupPage() {
@@ -13,6 +13,11 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state: AppState) => state.auth.user);
+
+  if (user) {
+    return <Navigate to={dashboardPath(user.role)} replace />;
+  }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
